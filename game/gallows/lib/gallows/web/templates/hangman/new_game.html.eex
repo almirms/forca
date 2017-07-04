@@ -1,0 +1,2 @@
+<h1>forca forca forca</h1>
+<%= new_game_button(@conn) %>
