@@ -1,4 +1,10 @@
-<%= game_state(@tally.game_state) %>
+<%= if game_initializing?(@tally) do %>
+    <div class="alert alert-info" style="text-align:center;">
+      eeeeestá valendo!
+    </div>
+<% else %>
+    <%= game_state(@tally.game_state) %>
+<% end %>
 
 <div class="row">
   <div class="col-md-4">

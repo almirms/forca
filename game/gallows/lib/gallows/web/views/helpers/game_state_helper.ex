@@ -18,7 +18,7 @@ defmodule Gallows.Views.Helpers.GameStateHelper do
   defp alert(nil), do: ""
   defp alert({ class, message }) do
     """
-    <div class="alert alert-#{class}">
+    <div class="alert alert-#{class}" style="text-align:center;">
       #{message}
     </div>
     """
