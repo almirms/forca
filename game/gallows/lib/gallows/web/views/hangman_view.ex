@@ -16,8 +16,8 @@ defmodule Gallows.Web.HangmanView do
   end
 
   def game_initializing?(%{ game_state: game_state }) do
-      game_state == :initializing
-    end
+    game_state == :initializing
+  end
   
   def new_game_button(conn) do
     button("novo jogo", to: hangman_path(conn, :create_game), id: "novo_jogo")
