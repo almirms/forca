@@ -21,7 +21,7 @@ defmodule Hangman.Game do
   end
 
   def make_move(game, guess) do
-     accept_move(game, guess, MapSet.member?(game.used, guess))
+     accept_move(game, guess, guess =~ ~r/^\p{Ll}$/u, MapSet.member?(game.used, guess))
      |> return_with_tally()
   end
 
@@ -46,11 +46,15 @@ defmodule Hangman.Game do
     }
   end
   
-  defp accept_move(game, _guess, _already_guessed = true) do
+  defp accept_move(game, _guess, _valid_guess = false, _already_guessed = _) do
+     Map.put(game, :game_state, :invalid_guess)
+  end
+  
+  defp accept_move(game, _guess, _valid_guess = _, _already_guessed = true) do
      Map.put(game, :game_state, :already_used)
   end
 
-  defp accept_move(game, guess, _already_guessed = false) do
+  defp accept_move(game, guess, _valid_guess = _, _already_guessed = false) do
     Map.put(game, :used, MapSet.put(game.used, guess))
     |> score_guess(Enum.member?(game.letters, guess))
   end

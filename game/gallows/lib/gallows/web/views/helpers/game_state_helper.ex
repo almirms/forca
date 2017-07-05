@@ -7,6 +7,7 @@ defmodule Gallows.Views.Helpers.GameStateHelper do
     :lost             => { :danger, "você PER-DEU!" },
     :good_guess       => { :success, "boa!!!" },
     :bad_guess        => { :warning, "não tem essa!" },
+    :invalid_guess    => { :warning, "só uma letra minúscula, pfv (acento vale, cabeÇÃO!)!" },
     :already_used     => { :info, "você já chutou essa!" }
   }
 
