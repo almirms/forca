@@ -4,10 +4,10 @@ defmodule Gallows.Views.Helpers.GameStateHelper do
 
   @responses %{
     :won              => { :success, "você venceu!" },
-    :lost             => { :danger, "você PER-DEU! pode chutar acento e cê cedilhado, cabeÇÃO!" },     
-    :good_guess       => { :success, "boa!!!" }, 
-    :bad_guess        => { :warning, "não tem essa!" }, 
-    :already_used     => { :info, "você já chutou essa!" } 
+    :lost             => { :danger, "você PER-DEU!" },
+    :good_guess       => { :success, "boa!!!" },
+    :bad_guess        => { :warning, "não tem essa!" },
+    :already_used     => { :info, "você já chutou essa!" }
   }
 
   def game_state(state) do

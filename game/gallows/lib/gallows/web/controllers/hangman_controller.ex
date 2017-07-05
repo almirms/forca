@@ -4,7 +4,8 @@ defmodule Gallows.Web.HangmanController do
   require Logger
 
   def create_game(conn, _params) do
-    log_requests(conn)
+    conn
+    |> log_requests
 
     game = Hangman.new_game()
     tally = Hangman.tally(game)
@@ -14,7 +15,8 @@ defmodule Gallows.Web.HangmanController do
   end
 
   def make_move(conn, params) do
-    log_requests(conn)
+    conn
+    |> log_requests
 
     guess = params["make_move"]["guess"] |> String.downcase()
     tally = 

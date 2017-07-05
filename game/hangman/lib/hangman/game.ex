@@ -26,24 +26,25 @@ defmodule Hangman.Game do
   end
 
   def tally(game  = %{ game_state: state }) when state == :lost do
-    %{
-      game_state:   game.game_state,
-      turns_left:   game.turns_left,
-      letters:      game.letters,
-      letters_used: game.used |> MapSet.to_list() |> Enum.join(", ")
-    }
+    tally_without_letters(game) 
+    |> Map.put(:letters, game.letters)
   end
   
   def tally(game) do
-    %{
-      game_state:   game.game_state,
-      turns_left:   game.turns_left,
-      letters:      game.letters |> reveal_guessed(game.used),
-      letters_used: game.used |> MapSet.to_list() |> Enum.join(", ")
-    }
+    tally_without_letters(game) 
+    |> Map.put(:letters, game.letters |> reveal_guessed(game.used))
   end
   
   ########################################################################
+  
+  defp tally_without_letters(game) do
+    %{
+      game_state:   game.game_state,
+      turns_left:   game.turns_left,
+      letters:      "",
+      letters_used: game.used |> MapSet.to_list() |> Enum.join(", ")
+    }
+  end
   
   defp accept_move(game, _guess, _already_guessed = true) do
      Map.put(game, :game_state, :already_used)
