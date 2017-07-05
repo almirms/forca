@@ -25,6 +25,15 @@ defmodule Hangman.Game do
      |> return_with_tally()
   end
 
+  def tally(game  = %{ game_state: state }) when state == :lost do
+    %{
+      game_state:   game.game_state,
+      turns_left:   game.turns_left,
+      letters:      game.letters,
+      letters_used: game.used |> MapSet.to_list() |> Enum.join(", ")
+    }
+  end
+  
   def tally(game) do
     %{
       game_state:   game.game_state,
